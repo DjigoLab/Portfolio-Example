@@ -55,9 +55,7 @@
     max-height: 300px;
     border-radius: 50px 50px 0px 0px;
     object-fit: cover;
-    -webkit-box-shadow: 0px -8px 46px -11px rgba(0, 0, 0, 0.35);
-    -moz-box-shadow: 0px -8px 46px -11px rgba(0, 0, 0, 0.35);
-    box-shadow: 0px -8px 46px -11px rgba(0, 0, 0, 0.35);
+
   }
   .user-info {
     padding: 20px;

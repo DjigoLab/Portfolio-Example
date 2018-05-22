@@ -1,10 +1,20 @@
 <template lang="html">
 
-  <nav v-sticky="{ zIndex: 0, stickyTop: 440}">
+  <nav v-sticky="{ zIndex: 0, stickyTop: 245}">
     <ul class="navigator">
-      <li class="navigator-item animated fadeInRight">Home</li>
-      <li class="navigator-item animated fadeInRight">Knowledge</li>
-      <li class="navigator-item animated fadeInRight">Contact Me!</li>
+
+      <li class="navigator-item animated" 
+      v-bind:class="{fadeInRight:firstAnimations.isLoaded, rubberBand:firstAnimations.isHovered}"
+       @mouseover='animateMenu(firstAnimations,false,true)' @mouseout='animateMenu(firstAnimations,false,false)'>Home</li>
+       
+      <li class="navigator-item animated" 
+      v-bind:class="{fadeInRight:secondAnimations.isLoaded,delay:secondAnimations.isLoaded, rubberBand:secondAnimations.isHovered}"
+       @mouseover='animateMenu(secondAnimations,false,true)' @mouseout='animateMenu(secondAnimations,false,false)'>Knowledge</li>
+
+      <li class="navigator-item animated" 
+      v-bind:class="{fadeInRight:thirdAnimations.isLoaded,delay:thirdAnimations.isLoaded, rubberBand:thirdAnimations.isHovered}" 
+      @mouseover='animateMenu(thirdAnimations,false,true)' @mouseout='animateMenu(thirdAnimations,false,false)'>Contact Me!</li>
+
     </ul>
   </nav>
 
@@ -15,16 +25,28 @@ import VueSticky from 'vue-sticky' // Es6 module
   export default  {
     name: 'navigator',
     props: [],
+
     mounted() {
 
     },
     data() {
       return {
-        top : '0'
-
-      }
-    },
+        top : '0',
+        firstAnimations : {
+        isHovered : false,
+        isLoaded : true },
+       secondAnimations : {
+        isHovered : false,
+        isLoaded : true },
+       thirdAnimations : {
+        isHovered : false,
+        isLoaded : true }
+    };},
     methods: {
+      animateMenu : function (liAnimation, isLoad, isHover ) {
+        liAnimation.isLoaded = isLoad
+        liAnimation.isHovered = isHover 
+      }
 
 
     },
@@ -58,15 +80,20 @@ import VueSticky from 'vue-sticky' // Es6 module
     -webkit-border-radius: 50px 0px 0px 50px;
     margin-right: 0;
     &:nth-child(2) {
-      animation-delay: 0.5s;
       padding-left: 30px;
+      &.delay {
+        animation-delay: 0.5s;
+      }
     }
     &:last-child {
       background: #424242;
       color: #fafafa;
-      animation-delay: 1s;
       padding-left: 35px;
+      &.delay {
+        animation-delay: 1s;
+      }
     }
+
     :before {
       content: "";
     }
