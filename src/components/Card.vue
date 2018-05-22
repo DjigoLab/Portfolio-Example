@@ -2,11 +2,11 @@
 
   <div class="portfolio-image">
    <div class="user-info">
-     <img src="../assets/me.jpg" >
+     <img class="animated " :class='{shake:isClicked, slideInDown:isStatic}' @click='animatePic(false,true)' src="../assets/me.jpg" >
      <h1 class="name"></h1>
      <vue-typer text='¡Buenas!' :repeat='0' ></vue-typer>
-     <p class="description"> <vue-typer :text=description :pre-type-delay='1500' :repeat='0'></vue-typer></p>
-     <p class="description"> <vue-typer :text=phrase :pre-type-delay='6500' :repeat='0'></vue-typer></p>
+     <p class="description"> <vue-typer :text=description :pre-type-delay='1200' :repeat='0'></vue-typer></p>
+     <p class="description"> <vue-typer :text=phrase :pre-type-delay='6200' :repeat='0'></vue-typer></p>
     <span class="social-media">
      <ul class="social-list">
        <li><i class="devicon-github-plain-wordmark colored"></i></li>
@@ -28,13 +28,21 @@
     data() {
       return {
         name: "",
-        description: "I'm Antonio Djigo, Front-end Developer and Back-end learner.",
-        phrase: "Feel free to explore my website!"
+        description : "I'm Antonio Djigo, Front-end Developer and Back-end learner.",
+        phrase : "Feel free to explore my website!",
+        isStatic : true,
+        isClicked : false,
+
 
       }
     },
     methods: {
+      animatePic : function (isStat, isClick) {
+       
+        this.isStatic = isStat
+        this.isClicked = isClick 
 
+      },
     },
     computed: {
 
@@ -50,16 +58,21 @@
   justify-content: center;
   border-radius: 50px;
 
+
+  .user-info {
+    padding: 20px;
+    display: flex;
+    flex-flow: column;
   img {
-    width: 100%;
+    width: 70%;
+    align-self: center;
     max-height: 300px;
     border-radius: 50px 50px 0px 0px;
     object-fit: cover;
+		box-shadow: 0px 40px 25px 10px rgba(0,0,0,0.2);
+
 
   }
-  .user-info {
-    padding: 20px;
-
     .name {
       z-index: 200;
       background: #fafafa;
@@ -86,4 +99,7 @@
     }
   }
 }
-</style>
+
+
+
+  </style>
