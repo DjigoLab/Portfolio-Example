@@ -2,11 +2,11 @@
 
   <nav v-sticky="{ zIndex: 0, stickyTop: 245}">
     <ul class="navigator">
-
+<vue-top right='0'>
       <li class="navigator-item animated" 
       v-bind:class="{fadeInRight:firstAnimations.isLoaded, rubberBand:firstAnimations.isHovered}"
-       @mouseover='animateMenu(firstAnimations,false,true)' @mouseout='animateMenu(firstAnimations,false,false)'>Home</li>
-       
+       @mouseover='animateMenu(firstAnimations,false,true)' @mouseout='animateMenu(firstAnimations,false,false)' >Home</li>
+       </vue-top>
       <li class="navigator-item animated" 
       v-bind:class="{fadeInRight:secondAnimations.isLoaded,delay:secondAnimations.isLoaded, rubberBand:secondAnimations.isHovered}"
        @mouseover='animateMenu(secondAnimations,false,true)' @mouseout='animateMenu(secondAnimations,false,false)'>Knowledge</li>
@@ -22,6 +22,8 @@
 
 <script lang="js">
 import VueSticky from 'vue-sticky' // Es6 module
+import VueTop from 'vue-top';
+
   export default  {
     name: 'navigator',
     props: [],
@@ -46,6 +48,9 @@ import VueSticky from 'vue-sticky' // Es6 module
       animateMenu : function (liAnimation, isLoad, isHover ) {
         liAnimation.isLoaded = isLoad
         liAnimation.isHovered = isHover 
+      },
+      scrollToTop: function (){
+        document.documentElement.scrollTop = 0;
       }
 
 
@@ -58,6 +63,9 @@ import VueSticky from 'vue-sticky' // Es6 module
     directives: {
   'sticky': VueSticky,
 },
+components:{
+      VueTop
+}
 }
 </script>
 
